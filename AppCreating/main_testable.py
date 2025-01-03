@@ -128,7 +128,8 @@ def update_employee_field(emp_id, field, value):
     if field not in allowed_fields:
         raise ValueError(f"Недопустимое поле для обновления: {field}")
 
-    conn = sqlite3.connect("employees.db")
+    db_path = get_database_path()
+    conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     cursor.execute(f"UPDATE employees SET {field} = ? WHERE id = ?", (value, emp_id))
     conn.commit()
