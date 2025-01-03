@@ -26,8 +26,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Install bsdtar
-        run: sudo apt-get install -y bsdtar
+      - name: Install libarchive-tools (includes bsdtar)
+        run: sudo apt-get update && sudo apt-get install -y libarchive-tools
 
       - name: Run tests with Allure
         run: |
@@ -36,6 +36,7 @@ jobs:
       - name: Download and Generate Allure Report
         run: |
           wget -qO- https://github.com/allure-framework/allure2/releases/download/2.20.0/allure-2.20.0.zip | bsdtar -xvf-
+          chmod +x ./allure-2.20.0/bin/allure  # Добавлено предоставление прав
           ./allure-2.20.0/bin/allure generate allure-results -o allure-report --clean
 
       - name: Upload Allure Report to GitHub Pages
