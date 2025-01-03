@@ -18,6 +18,7 @@ class TestEmployeeApp(unittest.TestCase):
         if os.path.exists(db_path):
             os.remove(db_path)
 
+
     def test_view_employees_empty(self):
         """Тест отображения сотрудников при пустой базе данных."""
         employees = get_all_employees()

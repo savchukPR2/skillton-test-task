@@ -14,9 +14,10 @@ def get_database_path():
 
 def initialize_database():
     """Инициализация базы данных."""
-    db_path = get_database_path()
+    db_path = os.path.join(os.path.dirname(__file__), "employees.db")
     if not os.path.exists(db_path):
         print("База данных не найдена. Создаю новую...")
+
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     cursor.execute('''CREATE TABLE IF NOT EXISTS employees (
