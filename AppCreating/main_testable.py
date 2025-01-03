@@ -6,18 +6,14 @@ import sys
 
 def get_database_path():
     """Возвращает путь к базе данных в текущей папке."""
-    if getattr(sys, 'frozen', False):  # Если скрипт упакован в .exe
+    if getattr(sys, 'frozen', False):
         base_dir = os.path.dirname(sys.executable)
-    else:  # Если выполняется как .py файл
+    else:
         base_dir = os.path.dirname(os.path.abspath(__file__))
     return os.path.join(base_dir, "employees.db")
 
 def initialize_database():
-    """Инициализация базы данных."""
-    db_path = os.path.join(os.path.dirname(__file__), "employees.db")
-    if not os.path.exists(db_path):
-        print("База данных не найдена. Создаю новую...")
-
+    db_path = "employees.db"
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     cursor.execute('''CREATE TABLE IF NOT EXISTS employees (
@@ -30,13 +26,14 @@ def initialize_database():
                       )''')
     conn.commit()
     conn.close()
-    print(f"База данных готова. Путь: {db_path}")
+
+
 
 def validate_date(date_str):
     """Проверка корректности формата даты."""
     try:
         valid_date = datetime.strptime(date_str, "%d.%m.%Y")
-        return valid_date.strftime("%Y-%m-%d")  # Преобразование в формат гггг-мм-дд
+        return valid_date.strftime("%Y-%m-%d")
     except ValueError:
         return None
 
@@ -70,7 +67,7 @@ def view_employees():
             print(f"| {4:<2}| {'Email':<15}| {emp[3]:<15}")
             print(f"| {5:<2}| {'Дата рождения':<15}| {emp[4]:<15}")
             print(f"| {5:<2}| {'Зарплата':<15}| {emp[5]:<,.2f}")
-            print("-" * 50)  # Разделитель между сотрудниками
+            print("-" * 50)
     else:
         print("Сотрудники не найдены.")
 
