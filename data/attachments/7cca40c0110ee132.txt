@@ -1,0 +1,3 @@
+База данных не найдена. Создаю новую...
+База данных готова. Путь: /home/runner/work/skillton-test-task/skillton-test-task/AppCreating/employees.db
+Сотрудник успешно добавлен.
