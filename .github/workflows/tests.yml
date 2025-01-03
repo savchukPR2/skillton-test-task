@@ -36,6 +36,7 @@ jobs:
       - name: Download and Generate Allure Report
         run: |
           wget -qO- https://github.com/allure-framework/allure2/releases/download/2.20.0/allure-2.20.0.zip | bsdtar -xvf-
+          chmod +x ./allure-2.20.0/bin/allure  # Добавлено предоставление прав
           ./allure-2.20.0/bin/allure generate allure-results -o allure-report --clean
 
       - name: Upload Allure Report to GitHub Pages
