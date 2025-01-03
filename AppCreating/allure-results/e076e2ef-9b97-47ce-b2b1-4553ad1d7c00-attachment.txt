@@ -1,0 +1,4 @@
+База данных не найдена. Создаю новую...
+База данных готова. Путь: H:\Personal\Anton\test_job\skillton-test-task\AppCreating\employees.db
+Сотрудник успешно добавлен.
+Сотрудник успешно удален.
